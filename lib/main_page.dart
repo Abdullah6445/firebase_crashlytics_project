@@ -1,3 +1,4 @@
+import 'package:firebase_crashlytics_project/second_page.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,9 +14,22 @@ class _MainPageState extends State<MainPage> {
     return Scaffold(
       appBar: AppBar(),
       body: Center(
-        child: TextButton(
-          onPressed: () => throw Exception(),
-          child: const Text("Throw Test Exception"),
+        child: Column(
+          children: [
+            TextButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SecondPage(),
+                    ));
+              },
+              child: const Text("Move to Second Page"),
+            ),
+            ElevatedButton(
+                onPressed: () => throw Exception(),
+                child: const Text("Throw Test Exception main page")),
+          ],
         ),
       ),
     );
