@@ -1,8 +1,29 @@
+import 'dart:async';
+
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/material.dart';
 
-class CrashlyticsDemoScreen extends StatelessWidget {
+class CrashlyticsDemoScreen extends StatefulWidget {
   const CrashlyticsDemoScreen({super.key});
+
+  @override
+  State<CrashlyticsDemoScreen> createState() => _CrashlyticsDemoScreenState();
+}
+
+class _CrashlyticsDemoScreenState extends State<CrashlyticsDemoScreen> {
+  @override
+  void initState() {
+    super.initState();
+    executeRepeatedly();
+  }
+
+  void executeRepeatedly() {
+    Timer.periodic(Duration(seconds: 5), (timer) {
+      // Your code here
+      print("This code executes every 5 seconds!");
+      throw Exception("==== This is exception ====>");
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,40 +52,6 @@ class CrashlyticsDemoScreen extends StatelessWidget {
               } catch (e, stack) {
                 FirebaseCrashlytics.instance.recordError(e, stack);
               }
-            },
-          ),
-          _buildButton(
-            context,
-            label: "Log Custom Event",
-            onPressed: () {
-              FirebaseCrashlytics.instance
-                  .log("User performed a custom action.");
-            },
-          ),
-          _buildButton(
-            context,
-            label: "Trigger Async Error",
-            onPressed: () async {
-              Future.delayed(Duration(seconds: 1), () {
-                throw Exception("This is an async error!");
-              });
-            },
-          ),
-          _buildButton(
-            context,
-            label: "Log Breadcrumb",
-            onPressed: () {
-              FirebaseCrashlytics.instance
-                  .log("User navigated to CrashlyticsDemoScreen.");
-            },
-          ),
-          _buildButton(
-            context,
-            label: "Trigger Platform-Specific Error",
-            onPressed: () {
-              // Simulate a native platform error. This is a placeholder.
-              FirebaseCrashlytics.instance
-                  .log("Simulated platform-specific error.");
             },
           ),
         ],
