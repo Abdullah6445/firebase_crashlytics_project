@@ -10,6 +10,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   FlutterError.onError = (errorDetails) {
+    debugPrint("error aya hai");
     FirebaseCrashlytics.instance.recordFlutterFatalError(errorDetails);
   };
 
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         useMaterial3: false,
       ),
-      home: const MainPage(),
+      home: const CrashlyticsDemoScreen(),
     );
   }
 }
