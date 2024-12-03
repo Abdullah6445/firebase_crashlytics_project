@@ -43,14 +43,9 @@ class FirebaseMsgApi {
 
     // jab background ya terminate hwi v ho
     // firebaseMessageApi.getInitialMessage().then(handleReceiveMessage);
-    FirebaseMessaging.onBackgroundMessage(_firebaseBackgroundHandler);
+    FirebaseMessaging.onBackgroundMessage(firebaseBackgroundHandler);
 
     //jab app notification se open ho
     FirebaseMessaging.onMessageOpenedApp.listen(handleReceiveMessage);
   }
-}
-
-Future<void> _firebaseBackgroundHandler(RemoteMessage message) async {
-  debugPrint("<===== Background message received =====>");
-  NotificationService.showNotification(message);
 }

@@ -26,11 +26,11 @@ class NotificationService {
         priority: Priority.high,
         actions: [
           AndroidNotificationAction(
-            "id",
+            "idabsdmsandb",
             "call",
           ),
           AndroidNotificationAction(
-            "decline",
+            "declineasdfjasbfadkj",
             "decline",
           )
         ]);
@@ -42,6 +42,8 @@ class NotificationService {
 
     await _notifications.show(
       message.hashCode,
+      // message.data['title'],
+      // message.data['body'],
       message.notification?.title,
       message.notification?.body,
       notificationDetails,

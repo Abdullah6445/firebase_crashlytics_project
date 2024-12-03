@@ -4,12 +4,20 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:firebase_crashlytics_project/firebase_messaging/notification_screen.dart';
 import 'package:firebase_crashlytics_project/firebase_msg_api/firebase_msg_api.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
 import 'firebase_messaging/firebase_message_screen.dart';
 import 'firebase_msg_api/flutter_local_notification.dart';
 
 final navigatorKey = GlobalKey<NavigatorState>();
+
+@pragma('vm:entry-point')
+Future<void> firebaseBackgroundHandler(RemoteMessage message) async {
+  debugPrint("<===== Background message received =====>");
+  NotificationService.showNotification(message);
+}
+
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
