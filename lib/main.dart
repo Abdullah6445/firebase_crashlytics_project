@@ -13,7 +13,7 @@ final navigatorKey = GlobalKey<NavigatorState>();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  await FirebaseMsgApi().initNotification();
+  await FirebaseMsgApi.initNotification();
   await NotificationService.initialize();
   FlutterError.onError = (errorDetails) {
     debugPrint("error aya hai");

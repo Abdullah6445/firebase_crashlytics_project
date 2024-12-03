@@ -1,4 +1,5 @@
 import 'package:firebase_messaging/firebase_messaging.dart';
+
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class NotificationService {
@@ -19,12 +20,20 @@ class NotificationService {
 
   static Future<void> showNotification(RemoteMessage message) async {
     const androidDetails = AndroidNotificationDetails(
-      'channel_id',
-      'channel_name',
-      channelDescription: 'channel_description',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
+        'channel_id', 'channel_name',
+        channelDescription: 'channel_description',
+        importance: Importance.max,
+        priority: Priority.high,
+        actions: [
+          AndroidNotificationAction(
+            "id",
+            "call",
+          ),
+          AndroidNotificationAction(
+            "decline",
+            "decline",
+          )
+        ]);
 
     const notificationDetails = NotificationDetails(
       android: androidDetails,
